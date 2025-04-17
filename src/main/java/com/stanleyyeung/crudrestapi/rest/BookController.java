@@ -30,14 +30,14 @@ public class BookController {
 	@ResponseStatus(HttpStatus.OK)
     @GetMapping("/books")
     public List<Book> getBooksByAuthorAndOrStatus(@RequestParam(required = false) String author, 
-    		@RequestParam(required = false) Boolean status) {
+    		@RequestParam(required = false) Boolean published) {
 		
     	if (author == null) {
     		
     		List<Book> bookList = booksService.getAllBooksList();
     		
-    		if(status != null) {
-    			List<Book> filteredBooksByStatus = booksService.findBooksByStatus(status);
+    		if(published != null) {
+    			List<Book> filteredBooksByStatus = booksService.findBooksByStatus(published);
     			return filteredBooksByStatus;
     		}
     		
@@ -50,8 +50,8 @@ public class BookController {
             throw new NotFoundException("Author not found - " + author);
         }
     	
-    	if(status != null) {
-    		List<Book> filteredBooksByStatusAndAuthor = booksService.findBooksByAuthorAndStatus(author, status);
+    	if(published != null) {
+    		List<Book> filteredBooksByStatusAndAuthor = booksService.findBooksByAuthorAndStatus(author, published);
     		return filteredBooksByStatusAndAuthor;
     		
     	}
