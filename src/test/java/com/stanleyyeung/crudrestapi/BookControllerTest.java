@@ -71,7 +71,7 @@ public class BookControllerTest {
 	public void getBooksByStatusHttpRequestSuccess() throws Exception {
 		
 		MockHttpServletRequestBuilder requestBuilder = get("/books")
-                						.param("status", "true");
+                						.param("published", "true");
 		
 	    mockMvc.perform(requestBuilder)
 		.andExpect(MockMvcResultMatchers.status().isOk())
@@ -84,7 +84,7 @@ public class BookControllerTest {
 	public void getBooksByStatusHttpRequestFail() throws Exception {
 		
 		MockHttpServletRequestBuilder requestBuilder = get("/books")
-                						.param("status", "123");
+                						.param("published", "123");
 		
 	    mockMvc.perform(requestBuilder)
 		.andExpect(MockMvcResultMatchers.status().isBadRequest())
@@ -98,7 +98,7 @@ public class BookControllerTest {
 		
 		MockHttpServletRequestBuilder requestBuilder = get("/books")
                 						.param("author", "stanley")
-                						.param("status", "true");
+                						.param("published", "true");
 		
 	    mockMvc.perform(requestBuilder)
 		.andExpect(MockMvcResultMatchers.status().isOk())
